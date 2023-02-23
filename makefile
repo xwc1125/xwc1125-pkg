@@ -1,0 +1,3 @@
+dep-update:
+	go list -m -u all
+	go get -u ./...

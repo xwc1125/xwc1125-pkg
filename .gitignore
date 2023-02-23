@@ -1,0 +1,13 @@
+.idea
+.vscode
+static/uploadfile
+main.exe
+temp/
+!temp
+vendor
+temp/logs
+*/.DS_Store
+go.sum
+**/.codecc/
+**/.temp/
+logs
