@@ -4,11 +4,12 @@
 package redis
 
 import (
+	"context"
 	"os"
 	"sync"
 
 	"github.com/chain5j/logger"
-	"github.com/go-redis/redis"
+	"github.com/go-redis/redis/v8"
 	"github.com/spf13/viper"
 	"github.com/xwc1125/xwc1125-pkg/utils/stringutil"
 )
@@ -85,7 +86,7 @@ func New(config RedisConfig) (*DB, error) {
 	}
 
 	var logger = logger.Log("redis")
-	_, err := client.Ping().Result()
+	_, err := client.Ping(context.Background()).Result()
 	if err != nil {
 		logger.Error("redis连接失败", "err", err)
 		return nil, err
@@ -131,7 +132,7 @@ func (r *DB) PubSub() redis.UniversalClient {
 }
 
 func (r *DB) Ping() bool {
-	_, err := r.Client.Ping().Result()
+	_, err := r.Client.Ping(context.Background()).Result()
 	if err != nil {
 		logger.Info("redis ping", "err", err)
 		return false
@@ -140,7 +141,7 @@ func (r *DB) Ping() bool {
 }
 
 func (r *DB) IsExist(key string) bool {
-	v, err := r.Client.Exists(key).Result()
+	v, err := r.Client.Exists(context.Background(), key).Result()
 	if err != nil {
 		return false
 	}

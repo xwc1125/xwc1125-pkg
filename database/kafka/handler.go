@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Shopify/sarama"
+	"github.com/IBM/sarama"
 )
 
 // ConsumerHandler represents a Sarama consumer group consumer
@@ -36,7 +36,7 @@ func (h *ConsumerHandler) ConsumeClaim(session sarama.ConsumerGroupSession, clai
 	// NOTE:
 	// Do not move the code below to a goroutine.
 	// The `ConsumeClaim` itself is called within a goroutine, see:
-	// https://github.com/Shopify/sarama/blob/master/consumer_group.go#L27-L29
+	// https://github.com/IBM/sarama/blob/master/consumer_group.go#L27-L29
 	for msg := range claim.Messages() {
 		if h.IsLog {
 			log.Println(fmt.Sprintf("Message claimed: value = %s, timestamp = %v, topic = %s", string(msg.Value), msg.Timestamp, msg.Topic))
