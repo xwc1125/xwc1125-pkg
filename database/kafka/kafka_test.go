@@ -15,7 +15,7 @@ import (
 	"syscall"
 	"testing"
 
-	"github.com/Shopify/sarama"
+	"github.com/IBM/sarama"
 )
 
 func TestProducer(t *testing.T) {
@@ -44,6 +44,9 @@ func TestProducer(t *testing.T) {
 		}
 	}()
 	producer, err := kafka.NewProducer()
+	if err != nil {
+		t.Fatal(err)
+	}
 	for i := 0; i < 10; i++ {
 		producer.ProducerMessage(k.Topic[0], "key"+strconv.Itoa(i), "value"+strconv.Itoa(i), 0, result)
 	}

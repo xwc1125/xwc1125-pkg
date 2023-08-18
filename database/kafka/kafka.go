@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Shopify/sarama"
+	"github.com/IBM/sarama"
 	"github.com/xwc1125/xwc1125-pkg/utils/stringutil"
 )
 
